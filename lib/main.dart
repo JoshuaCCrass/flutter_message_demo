@@ -1,50 +1,36 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(
     MaterialApp(
       title: 'Named Routes Demo',
-      // Start the app with the "/" named route. In this case, the app starts
-      // on the FirstScreen widget.
       initialRoute: '/',
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const FirstScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => const SecondScreen(),
-        '/third': (context) => const ThirdScreen()
+        '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/login/messages': (context) => const MessagesScreen(),
+        '/login/messages/conversations': (context) => const converationsScreen(),
       },
     ),
   );
 }
 
-class FirstScreen extends StatelessWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
       body: Center(
         child: Column(
           children: [
             ElevatedButton(
-              // Within the `FirstScreen` widget
               onPressed: () {
-                // Navigate to the second screen using a named route.
-                Navigator.pushNamed(context, '/second');
+                Navigator.pushNamed(context, '/login');
               },
-              child: const Text('Launch screen'),
-            ),
-            ElevatedButton(
-              // Within the `FirstScreen` widget
-              onPressed: () {
-                // Navigate to the second screen using a named route.
-                Navigator.pushNamed(context, '/third');
-              },
-              child: const Text('Launch screen'),
+              child: const Text('Next screen'),
             ),
           ],
         ),
@@ -53,49 +39,103 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Screen'),
+        title: const Text('Login'),
       ),
       body: Center(
-        child: ElevatedButton(
-          // Within the SecondScreen widget
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+        child: Column(
+          children: [
+            const Padding(padding: EdgeInsets.all(5)),
+            const SizedBox(
+              width: 200,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'UserName',
+                ),
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(5)),
+            const SizedBox(
+              width: 200,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/login/messages');
+              },
+              child: const Text('Sign In'),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class ThirdScreen extends StatelessWidget {
-  const ThirdScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatelessWidget {
+  const MessagesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Third Screen'),
+        title: const Text('Messages'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          // Within the SecondScreen widget
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Padding(padding: EdgeInsets.all(5)),
+            SizedBox(
+              height: 60,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login/messages/conversations');
+                },
+                child: Column(
+                  children: const [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text('John'),
+                    ),
+                    Padding(padding: EdgeInsets.all(10)),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text('Food or Not'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class converationsScreen extends StatelessWidget {
+  const converationsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('John'),
       ),
     );
   }
