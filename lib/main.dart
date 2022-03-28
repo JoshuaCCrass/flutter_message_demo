@@ -1,8 +1,29 @@
-import 'dart:js';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if(!kIsWeb){
+    await Firebase.initializeApp();
+  }
+  else{
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyCYe4PK4t8rIuQEtO4pb4kh7xLsXV8rDX4",
+          authDomain: "star-conquest-69c96.firebaseapp.com",
+          appId: "1:535026242752:web:7766cb5c48180925004925",
+          messagingSenderId: "535026242752",
+          projectId: "star-conquest-69c96",
+          storageBucket: "star-conquest-69c96.appspot.com",
+          measurementId: "G-PDNW4SL9K6"
+      )
+    );
+  }
+
   runApp(
     MaterialApp(
       title: 'Named Routes Demo',
