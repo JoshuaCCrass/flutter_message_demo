@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "535026242752",
+    "project_id": "star-conquest-69c96",
+    "storage_bucket": "star-conquest-69c96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535026242752:android:099c9fc41ecc29f5004925",
+        "android_client_info": {
+          "package_name": "com.example.flutter_message_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535026242752-dgv4rr5hbpbrm5kmihc6im9ib97dp23o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiMz14wKrepOJ0SqqRyOEgnYR4ZfneeEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535026242752-dgv4rr5hbpbrm5kmihc6im9ib97dp23o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

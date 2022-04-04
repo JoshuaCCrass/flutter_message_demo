@@ -24,6 +24,37 @@ Future<void> main() async {
     );
   }
 
+  /*try {
+    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: "JCCrass3139@gmail.com",
+        password: "password"
+    );
+  } on FirebaseAuthException catch(e){
+    if (e.code == 'weak-password') {
+      print("weak password");
+    } else if (e.code == 'email-already-in-use') {
+      print("email already in use");
+    }
+  } catch (e) {
+    print(e);
+  }*/
+
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: "JCCrass3139@gmail.com",
+        password: "password"
+    );
+    print("Got in");
+  } on FirebaseAuthException catch(e){
+    if (e.code == 'user-not-found') {
+      print(e.code);
+    } else if (e.code == 'wrong-password') {
+      print(e.code);
+    }
+  } catch (e) {
+    print(e);
+  }
+
   runApp(
     MaterialApp(
       title: 'Named Routes Demo',
@@ -60,8 +91,25 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late TextEditingController emailTextBoxController;
+  late TextEditingController passwordTextBoxController;
+  late String errorText;
+
+  @override
+  void initState(){
+    super.initState();
+    emailTextBoxController = TextEditingController();
+    passwordTextBoxController = TextEditingController();
+    errorText = '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +152,7 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class MessagesScreen extends StatelessWidget {
