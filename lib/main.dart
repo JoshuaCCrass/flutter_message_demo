@@ -121,31 +121,45 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             const Padding(padding: EdgeInsets.all(5)),
-            const SizedBox(
+            SizedBox(
               width: 200,
               child: TextField(
-                decoration: InputDecoration(
+                controller: emailTextBoxController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'UserName',
                 ),
               ),
             ),
             const Padding(padding: EdgeInsets.all(5)),
-            const SizedBox(
+            SizedBox(
               width: 200,
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                controller: passwordTextBoxController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/login/messages');
-              },
-              child: const Text('Sign In'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login/messages');
+                  },
+                  child: const Text('Sign In'),
+                ),
+                const Padding(padding: EdgeInsets.all(5));
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login/messages');
+                  },
+                child: const Text('Sign up'),
+              ),
+              ],
             ),
           ],
         ),
